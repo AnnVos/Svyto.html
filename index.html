@@ -1,49 +1,273 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="uk">
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
-    <link rel="shortcut icon" href="https://s3-eu-west-1.amazonaws.com/deployed.tiiny.host/__404__/favicon.ico">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>З святом 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-    <!-- Google Fonts -->
+  body {
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    transition: background 1s ease;
+  }
 
-    <title>404 | tiiny.host - The simplest way to host & share your project</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145438012-1"></script>
-    <script>function gtag() {
-      dataLayer.push(arguments)
-    }
+  body.page1 {
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 35%, #ffd6a5 65%, #fdffb6 100%);
+  }
 
-    window.dataLayer = window.dataLayer || [], gtag("js", new Date), gtag("config", "UA-145438012-1")</script>
-    <link href="https://s3-eu-west-1.amazonaws.com/deployed.tiiny.host/__404__/404.css" rel="stylesheet">
+  body.page2 {
+    background: linear-gradient(135deg, #ffc8dd 0%, #ffafcc 25%, #cdb4db 60%, #a2d2ff 100%);
+  }
+
+  /* Animated background circles */
+  .bg-circles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+  .circle {
+    position:absolute; border-radius:50%;
+    animation: pulse ease-in-out infinite alternate;
+    opacity:0.18;
+  }
+  .c1 { width:400px; height:400px; background:#7c6fc4; top:-100px; left:-100px; animation-duration:6s; }
+  .c2 { width:300px; height:300px; background:#ffd93d; top:50%; right:-80px; animation-duration:8s; animation-delay:1s; }
+  .c3 { width:200px; height:200px; background:#ff9a3c; bottom:-50px; left:30%; animation-duration:7s; animation-delay:2s; }
+  @keyframes pulse { 0%{transform:scale(1)} 100%{transform:scale(1.15)} }
+
+  /* Floating elements */
+  .floaters { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+  .floater {
+    position:absolute; font-size:1.5rem; opacity:0;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0% { transform:translateY(110vh) rotate(0deg); opacity:0; }
+    10% { opacity:0.8; }
+    90% { opacity:0.8; }
+    100% { transform:translateY(-10vh) rotate(360deg); opacity:0; }
+  }
+
+  .card {
+    position:relative; z-index:10;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(10px);
+    border-radius:24px;
+    padding:3rem 3rem;
+    max-width:440px; width:90%;
+    text-align:center;
+    box-shadow: 0 20px 80px rgba(120,100,200,0.2), 0 4px 20px rgba(0,0,0,0.06);
+    border:2px solid rgba(255,255,255,0.9);
+  }
+
+  .step { display:none; }
+  .step.active { display:block; }
+
+  /* PAGE 1 styles */
+  .stars-row { font-size:2.5rem; margin-bottom:1.2rem; letter-spacing:0.3rem; }
+
+  .p1-title {
+    font-family:'Playfair Display', serif;
+    font-size:3rem;
+    font-weight:700;
+    background: linear-gradient(135deg, #6a5acd, #ff9a3c, #ffd93d);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    line-height:1.2;
+    margin-bottom:1rem;
+  }
+
+  .p1-sub {
+    font-size:1.25rem;
+    color:#3d3060;
+    line-height:2;
+    font-weight:500;
+    margin-bottom:2rem;
+  }
+
+  .p1-sub strong {
+    color:#6a5acd;
+    font-weight:700;
+  }
+
+  .balloon-row {
+    font-size:3rem;
+    margin: 1rem 0 1.5rem;
+    animation:bounce 2s ease-in-out infinite;
+    letter-spacing:0.5rem;
+  }
+  @keyframes bounce {
+    0%,100% { transform:translateY(0); }
+    50% { transform:translateY(-10px); }
+  }
+
+  .btn {
+    background: linear-gradient(135deg, #6a5acd, #ff9a3c);
+    color:white; border:none;
+    padding:1.3rem 3rem;
+    font-family:'Nunito', sans-serif;
+    font-size:1.3rem;
+    font-weight:600;
+    letter-spacing:0.05em;
+    border-radius:50px; cursor:pointer;
+    transition:all 0.3s ease;
+    box-shadow:0 6px 25px rgba(106,90,205,0.45);
+    position:relative; overflow:hidden;
+  }
+  .btn::before {
+    content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+    transition:left 0.5s;
+  }
+  .btn:hover::before { left:100%; }
+  .btn:hover { transform:translateY(-3px); box-shadow:0 10px 35px rgba(106,90,205,0.55); }
+
+  /* PAGE 2 styles */
+  .big-emoji { font-size:5rem; display:block; margin:0 0 0.5rem; animation:heartbeat 1.5s ease-in-out infinite; }
+  @keyframes heartbeat {
+    0%,100%{transform:scale(1)} 14%{transform:scale(1.12)} 28%{transform:scale(1)} 42%{transform:scale(1.08)} 56%{transform:scale(1)}
+  }
+
+  .p2-eyebrow {
+    font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:#6a5acd; margin-bottom:0.75rem; font-weight:600;
+  }
+
+  .p2-title {
+    font-family:'Playfair Display', serif;
+    font-size:2.4rem; font-weight:700;
+    color:#2d1f6e; line-height:1.2; margin-bottom:0.75rem;
+  }
+
+  .p2-sub {
+    font-family:'Playfair Display', serif;
+    font-style:italic; font-size:1.1rem;
+    color:#5a4aaa; margin:0.75rem 0 1.25rem;
+  }
+
+  .divider {
+    display:flex; align-items:center; gap:0.75rem;
+    margin:1.25rem 0; color:#7c6fc4; font-size:0.7rem; letter-spacing:0.2em;
+  }
+  .divider::before,.divider::after {
+    content:''; flex:1; height:1px;
+    background:linear-gradient(to right,transparent,#7c6fc4,transparent);
+  }
+
+  .due-date {
+    display:inline-block;
+    background:linear-gradient(135deg,#ede8ff,#dce8ff);
+    border:1px solid rgba(106,90,205,0.25);
+    border-radius:50px; padding:0.6rem 1.8rem;
+    font-size:0.85rem; color:#2d1f6e; letter-spacing:0.08em; margin-bottom:1.25rem;
+    font-weight:600;
+  }
+
+  .love-note {
+    font-family:'Playfair Display', serif;
+    font-style:italic; font-size:1rem;
+    color:#4a3a8a; line-height:1.9;
+  }
+
+  .confetti-container { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:100; }
+  @keyframes confettiFall {
+    0% { transform:translateY(-10px) rotate(0deg); opacity:1; }
+    100% { transform:translateY(100vh) rotate(720deg); opacity:0; }
+  }
+  .fade-in { animation:fadeIn 0.9s ease forwards; }
+  @keyframes fadeIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+</style>
 </head>
-<body>
-<div id="root">
-    <div class="body">
-        <header>
-            <img height="40" src="https://tiiny.host/assets/logo.png" alt="tiny.host logo"/>
-        </header>
-        <div class="main-container">
-            <div class="left-pane">
-                <div>
-                    <h1 class="h1">404</h1>
-                    <h2 class="title">
-                        Sorry, this content doesn't exist.
-                    </h2>
-                    <a class="link" href="https://tiiny.host/help?ref=404"><u>Help / Support</u></a>
-                    <div class="box">
-                        <div class="tag-line">Tiiny Host is the simplest way to share your work online.</div>
-                        <div class="grey mt-2">Share HTML, PDF or Zip files instantly.</div>
-                        <a class="btn btn-purple mt-3" href="https://tiiny.host?ref=404">Try it out for free →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body class="page1">
+
+<div class="bg-circles">
+  <div class="circle c1"></div>
+  <div class="circle c2"></div>
+  <div class="circle c3"></div>
 </div>
+<div class="floaters" id="floaters"></div>
+<div class="confetti-container" id="confetti"></div>
+
+<div class="card">
+
+  <!-- КРОК 1 -->
+  <div class="step active" id="step1">
+    <div class="stars-row">🌟✨🌟</div>
+    <h1 class="p1-title">Є привід<br>для радості!</h1>
+
+    <div class="balloon-row">🎈🎉🎈</div>
+
+    <p class="p1-sub">
+      Натисніть кнопку нижче —<br>
+      ми підготували для вас<br>
+      <strong>найкраще повідомлення</strong><br>
+      у вашому житті 🥹
+    </p>
+
+    <button class="btn" onclick="goReveal()">Відкрити 🎁</button>
+  </div>
+
+  <!-- КРОК 2 -->
+  <div class="step" id="step2">
+    <span class="big-emoji">🤰</span>
+    <p class="p2-eyebrow">вітаємо вас!</p>
+    <p class="p2-title">Ви станете<br>бабусею і дідусем!</p>
+    <p class="p2-sub">Ми з Женею чекаємо на малюка 💕</p>
+    <div class="due-date">🗓️ Листопад 2026 · Скорпіон 🦂</div>
+    <div class="divider">✦</div>
+    <p class="love-note">
+      Дякую вам за безмежне кохання —<br>
+      тепер і я передам його далі.<br><br>
+      Люблю вас обох дуже сильно 🌸
+    </p>
+  </div>
+
+</div>
+
+<script>
+  // Floating emojis for page 1
+  const floatersEl = document.getElementById('floaters');
+  const emojis = ['🌸','🎈','✨','🌟','💕','🎉','🌺','💫'];
+  for(let i=0;i<20;i++){
+    const f=document.createElement('div');
+    f.className='floater'; f.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    f.style.left=Math.random()*100+'%';
+    f.style.animationDuration=(8+Math.random()*8)+'s';
+    f.style.animationDelay=(Math.random()*10)+'s';
+    f.style.fontSize=(1+Math.random()*1.2)+'rem';
+    floatersEl.appendChild(f);
+  }
+
+  function goReveal() {
+    document.getElementById('step1').classList.remove('active');
+    document.body.classList.remove('page1');
+    document.body.classList.add('page2');
+    const s2=document.getElementById('step2');
+    s2.classList.add('active','fade-in');
+    launchConfetti();
+  }
+
+  function launchConfetti() {
+    const c=document.getElementById('confetti');
+    const colors=['#6a5acd','#ffd93d','#ff9a3c','#a8edea','#fff','#c4b5fd','#7dd3fc'];
+    for(let i=0;i<150;i++){
+      setTimeout(()=>{
+        const p=document.createElement('div');
+        p.style.cssText=`position:absolute;left:${Math.random()*100}%;top:-10px;
+          width:${6+Math.random()*10}px;height:${6+Math.random()*10}px;
+          background:${colors[Math.floor(Math.random()*colors.length)]};
+          border-radius:${Math.random()>.5?'50%':'2px'};opacity:0;
+          animation:confettiFall ${2+Math.random()*2.5}s ease forwards`;
+        c.appendChild(p);
+        setTimeout(()=>p.remove(),5000);
+      }, i*18);
+    }
+  }
+</script>
 </body>
 </html>
